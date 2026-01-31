@@ -13,6 +13,9 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+# Включает веб-консоль H2 — это встроенный UI для просмотра базы в браузере.
+# Доступна по адресу http://localhost:8081/h2-console. При подключении ввести JDBC URL: jdbc:h2:mem:restaurantdb, логин sa, пароль пустой.
+# Там можно выполнять SQL-запросы и смотреть данные в таблицах — удобно для отладки.
   h2:
     console:
       enabled: true
