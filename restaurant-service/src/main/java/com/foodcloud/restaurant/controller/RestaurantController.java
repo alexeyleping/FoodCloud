@@ -2,6 +2,7 @@ package com.foodcloud.restaurant.controller;
 
 import com.foodcloud.restaurant.entity.Restaurant;
 import com.foodcloud.restaurant.service.RestaurantService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant restaurant) {
         Long newRestaurantId = restaurantService.createRestaurant(restaurant);
         restaurant.setId(newRestaurantId);
         return ResponseEntity
@@ -37,7 +38,7 @@ public class RestaurantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant) {
+    public ResponseEntity<Void> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant restaurant) {
         restaurantService.updateRestaurant(id, restaurant);
         return ResponseEntity.ok().build();
     }
