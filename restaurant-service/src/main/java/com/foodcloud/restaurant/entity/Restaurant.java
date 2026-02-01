@@ -22,6 +22,6 @@ public class Restaurant {
     private String phone;
     private boolean active;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MenuItem> menuItems;
 }

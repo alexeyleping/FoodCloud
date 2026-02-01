@@ -71,7 +71,7 @@
 ## План заданий
 
 ### Задание #1 - Restaurant Service (Spring Boot REST + JPA)
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Spring Boot, Spring Data JPA, REST API, H2 database
 **Описание**: Создать первый микросервис — restaurant-service с CRUD для ресторанов и меню
 
