@@ -3,7 +3,11 @@ package com.foodcloud.order.service;
 import com.foodcloud.order.entity.Order;
 import com.foodcloud.order.entity.OrderStatus;
 import com.foodcloud.order.exception.OrderNotFoundException;
+import com.foodcloud.order.exception.RestaurantNotAvailableException;
 import com.foodcloud.order.repository.OrderRepository;
+import com.foodcloud.order.service.client.RestaurantClient;
+import com.foodcloud.order.service.dto.RestaurantDto;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,8 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
+    private final RestaurantClient restaurantClient;
+
     public Order createOrder(Order order) {
         order.setStatus(OrderStatus.NEW);
         order.setCreatedAt(LocalDateTime.now());
@@ -26,6 +32,17 @@ public class OrderService {
         order.getOrderItems().forEach(item -> item.setOrder(order));
 
         order.setTotalPrice(calculateTotalPrice(order));
+
+        try {
+            restaurantClient.getRestaurantById(order.getRestaurantId());
+        }  catch (FeignException.NotFound e) {
+            // restaurant-service вернул 404 — ресторан не найден
+            throw new RestaurantNotAvailableException("Restaurant with id " + order.getRestaurantId() + " not found");
+        } catch (FeignException e) {
+            // любая другая ошибка Feign (500, таймаут, сервис упал и т.д.)
+            throw new RestaurantNotAvailableException("Restaurant service is unavailable");
+        }
+
         return orderRepository.save(order);
     }
 

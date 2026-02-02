@@ -26,4 +26,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleNotFound(OrderNotFoundException ex) {
         return new ResponseEntity<>(Map.of("message", ex.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(RestaurantNotAvailableException.class)
+    public ResponseEntity<Map<String, Object>> restaurantNotAvailable(RestaurantNotAvailableException ex) {
+        return new ResponseEntity<>(Map.of("message", ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 }
