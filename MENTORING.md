@@ -85,7 +85,7 @@
 ---
 
 ### Задание #3 - Регистрация restaurant-service в Eureka
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Eureka Client, Service Discovery, аннотация `@EnableDiscoveryClient`
 **Описание**: Подключить restaurant-service как Eureka Client, чтобы он регистрировался в Discovery Server
 
@@ -177,5 +177,5 @@
 
 ## Текущий статус
 - **Фаза**: Service Discovery
-- **Последнее задание**: #2 - Eureka Discovery Server
-- **Следующий шаг**: Задание #3 - Регистрация restaurant-service в Eureka
+- **Последнее задание**: #3 - Регистрация restaurant-service в Eureka
+- **Следующий шаг**: Задание #4 - API Gateway (Spring Cloud Gateway)
