@@ -134,7 +134,7 @@
 ---
 
 ### Задание #10 - Circuit Breaker в Gateway (Resilience4j)
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Resilience4j CircuitBreaker, интеграция с Spring Cloud Gateway, fallback
 **Описание**: Добавить Circuit Breaker в Gateway для защиты от каскадных сбоев при падении сервисов
 
@@ -177,5 +177,5 @@
 
 ## Текущий статус
 - **Фаза**: Service Discovery
-- **Последнее задание**: #9 - Spring Cloud Config Server
-- **Следующий шаг**: Задание #10 - Circuit Breaker в Gateway (Resilience4j)
+- **Последнее задание**: #10 - Circuit Breaker в Gateway (Resilience4j)
+- **Следующий шаг**: Задание #11 - Rate Limiting в Gateway

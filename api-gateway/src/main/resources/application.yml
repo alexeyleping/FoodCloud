@@ -18,16 +18,44 @@ spring:
           uri: lb://RESTAURANT-SERVICE
           predicates:
             - Path=/api/restaurants/*/menu-items/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: restaurantServiceCB
+                fallbackUri: forward:/fallback/restaurants
         - id: restaurant-service
           uri: lb://RESTAURANT-SERVICE
           predicates:
             - Path=/api/restaurants/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: restaurantServiceCB
+                fallbackUri: forward:/fallback/restaurants
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/api/orders/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: orderServiceCB
+                fallbackUri: forward:/fallback/orders
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10           # анализирует последние 10 запросов
+        failure-rate-threshold: 50        # если 50%+ ошибок → OPEN
+        wait-duration-in-open-state: 10s  # в OPEN ждёт 10 секунд перед HALF_OPEN
+        permitted-number-of-calls-in-half-open-state: 3  # в HALF_OPEN пропускает 3 запроса
+    instances:
+      restaurantServiceCB:
+        base-config: default
+      orderServiceCB:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 3s              # если сервис не ответил за 3 сек → ошибка
