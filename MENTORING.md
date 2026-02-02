@@ -141,7 +141,7 @@
 ---
 
 ### Задание #11 - Rate Limiting в Gateway
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: RequestRateLimiter фильтр, Redis / in-memory rate limiting
 **Описание**: Настроить Rate Limiting на уровне Gateway для ограничения количества запросов
 
@@ -177,5 +177,5 @@
 
 ## Текущий статус
 - **Фаза**: Service Discovery
-- **Последнее задание**: #10 - Circuit Breaker в Gateway (Resilience4j)
-- **Следующий шаг**: Задание #11 - Rate Limiting в Gateway
+- **Последнее задание**: #11 - Rate Limiting в Gateway
+- **Следующий шаг**: Задание #12 - Custom Gateway Filters (логирование, auth)

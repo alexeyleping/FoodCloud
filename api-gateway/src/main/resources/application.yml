@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: api-gateway
+  data:
+    redis:
+      host: localhost
+      port: 6379
   cloud:
     gateway:
       discovery:
@@ -13,6 +17,12 @@ spring:
       default-filters:
         - AddRequestHeader=X-Source, api-gateway
         - AddResponseHeader=X-Powered-By, FoodCloud-Gateway
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+            redis-rate-limiter.requestedTokens: 1
+            key-resolver: "#{@ipKeyResolver}"
       routes:
         - id: menu-items-service
           uri: lb://RESTAURANT-SERVICE
