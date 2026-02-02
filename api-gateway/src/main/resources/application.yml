@@ -6,7 +6,18 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      default-filters:
+        - AddRequestHeader=X-Source, api-gateway
+        - AddResponseHeader=X-Powered-By, FoodCloud-Gateway
       routes:
+        - id: menu-items-service
+          uri: lb://RESTAURANT-SERVICE
+          predicates:
+            - Path=/api/restaurants/*/menu-items/**
         - id: restaurant-service
           uri: lb://RESTAURANT-SERVICE
           predicates:
