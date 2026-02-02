@@ -92,7 +92,7 @@
 ---
 
 ### Задание #4 - API Gateway (Spring Cloud Gateway)
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Spring Cloud Gateway, основы маршрутизации
 **Описание**: Создать сервис api-gateway на Spring Cloud Gateway, настроить базовую маршрутизацию
 
@@ -177,5 +177,5 @@
 
 ## Текущий статус
 - **Фаза**: Service Discovery
-- **Последнее задание**: #3 - Регистрация restaurant-service в Eureka
-- **Следующий шаг**: Задание #4 - API Gateway (Spring Cloud Gateway)
+- **Последнее задание**: #4 - API Gateway (Spring Cloud Gateway)
+- **Следующий шаг**: Задание #5 - Настройка маршрутов в Gateway
