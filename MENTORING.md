@@ -127,7 +127,7 @@
 ---
 
 ### Задание #9 - Spring Cloud Config Server
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Централизованная конфигурация, Config Server, Git-backed конфигурация
 **Описание**: Создать config-server и перенести конфигурацию сервисов в централизованное хранилище
 
@@ -177,5 +177,5 @@
 
 ## Текущий статус
 - **Фаза**: Service Discovery
-- **Последнее задание**: #8 - Load Balancing
-- **Следующий шаг**: Задание #9 - Spring Cloud Config Server
+- **Последнее задание**: #9 - Spring Cloud Config Server
+- **Следующий шаг**: Задание #10 - Circuit Breaker в Gateway (Resilience4j)

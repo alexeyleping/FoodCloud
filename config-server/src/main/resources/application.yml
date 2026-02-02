@@ -4,3 +4,11 @@ server:
 spring:
   application:
     name: config-server
+  profiles:
+    active: native
+# Указать путь к папке с конфигами в корне проекта
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:/home/alexeyleping/IdeaProjects/FoodCloud/config-repo
