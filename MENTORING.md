@@ -78,7 +78,7 @@
 ---
 
 ### Задание #2 - Eureka Discovery Server
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Spring Cloud Netflix Eureka Server, Service Registry
 **Описание**: Создать отдельный сервис Eureka Server для регистрации и обнаружения микросервисов
 
@@ -176,6 +176,6 @@
 ---
 
 ## Текущий статус
-- **Фаза**: Подготовка
-- **Последнее задание**: -
-- **Следующий шаг**: Задание #1 - Restaurant Service
+- **Фаза**: Service Discovery
+- **Последнее задание**: #2 - Eureka Discovery Server
+- **Следующий шаг**: Задание #3 - Регистрация restaurant-service в Eureka
