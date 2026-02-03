@@ -1,6 +1,9 @@
 server:
   port: 8080
 
+jwt:
+  secret: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+
 spring:
   application:
     name: api-gateway
@@ -35,7 +38,7 @@ spring:
                 fallbackUri: forward:/fallback/restaurants
             - name: JwtAuth
               args:
-                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+                secretKey: ${jwt.secret}
                 excludedPaths:
                     - /api/restaurants/public/**
         - id: restaurant-service
@@ -49,7 +52,7 @@ spring:
                 fallbackUri: forward:/fallback/restaurants
             - name: JwtAuth
               args:
-                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+                secretKey: ${jwt.secret}
                 excludedPaths:
                   - /api/restaurants/public/**
         - id: order-service
@@ -63,7 +66,7 @@ spring:
                 fallbackUri: forward:/fallback/orders
             - name: JwtAuth
               args:
-                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+                secretKey: ${jwt.secret}
 
 resilience4j:
   circuitbreaker:

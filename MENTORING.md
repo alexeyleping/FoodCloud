@@ -148,7 +148,7 @@
 ---
 
 ### Задание #12 - Custom Gateway Filters (логирование, auth)
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: GatewayFilter, GlobalFilter, Pre/Post фильтры, JWT авторизация
 **Описание**: Написать кастомные фильтры для Gateway: логирование запросов, проверка JWT токена
 
@@ -176,6 +176,6 @@
 ---
 
 ## Текущий статус
-- **Фаза**: Service Discovery
-- **Последнее задание**: #11 - Rate Limiting в Gateway
-- **Следующий шаг**: Задание #12 - Custom Gateway Filters (логирование, auth)
+- **Фаза**: Resilience & Security
+- **Последнее задание**: #12 - Custom Gateway Filters (логирование, auth)
+- **Следующий шаг**: Задание #13 - Delivery Service + Distributed Tracing
