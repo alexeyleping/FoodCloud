@@ -33,6 +33,11 @@ spring:
               args:
                 name: restaurantServiceCB
                 fallbackUri: forward:/fallback/restaurants
+            - name: JwtAuth
+              args:
+                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+                excludedPaths:
+                    - /api/restaurants/public/**
         - id: restaurant-service
           uri: lb://RESTAURANT-SERVICE
           predicates:
@@ -42,6 +47,11 @@ spring:
               args:
                 name: restaurantServiceCB
                 fallbackUri: forward:/fallback/restaurants
+            - name: JwtAuth
+              args:
+                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
+                excludedPaths:
+                  - /api/restaurants/public/**
         - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
@@ -51,6 +61,9 @@ spring:
               args:
                 name: orderServiceCB
                 fallbackUri: forward:/fallback/orders
+            - name: JwtAuth
+              args:
+                secretKey: ${JWT_SECRET:my-super-secret-key-at-least-32-characters}
 
 resilience4j:
   circuitbreaker:
