@@ -1,0 +1,16 @@
+# Этот файл переопределяет application.yml когда активен профиль "docker".
+# Spring мерджит: сначала application.yml, потом application-docker.yml поверх.
+# Здесь меняем только то, что отличается в Docker: адреса сервисов.
+
+eureka:
+  client:
+    service-url:
+      # В Docker контейнеры обращаются друг к другу по имени сервиса,
+      # а не через localhost (каждый контейнер — отдельная "машина")
+      defaultZone: http://discovery-server:8761/eureka
+
+management:
+  zipkin:
+    tracing:
+      # zipkin — имя контейнера в docker-compose
+      endpoint: http://zipkin:9411/api/v2/spans

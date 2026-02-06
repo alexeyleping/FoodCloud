@@ -1,0 +1,9 @@
+# Профиль docker для config-server.
+# Переопределяет путь к конфигам — в Docker config-repo
+# будет примонтирован как volume в /config-repo
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:/config-repo

@@ -9,6 +9,10 @@
 - Spring Cloud LoadBalancer (Балансировка нагрузки)
 - Resilience4j (Circuit Breaker, Rate Limiter, Retry)
 - Micrometer Tracing (Распределённая трассировка)
+- Apache Kafka (Асинхронное взаимодействие)
+- Prometheus + Grafana (Мониторинг и метрики)
+- JUnit 5 + MockMvc + WireMock (Тестирование)
+- Testcontainers (Интеграционные тесты)
 
 ## Процесс разработки
 
@@ -169,13 +173,41 @@
 ---
 
 ### Задание #15 - Docker Compose для всего стека
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Docker, Dockerfile, docker-compose, Spring profiles, контейнеризация
 **Описание**: Контейнеризировать все сервисы и поднять весь стек одной командой `docker-compose up`
 
 ---
 
+### Задание #16 - Apache Kafka (асинхронное взаимодействие)
+**Статус**: Не начато
+**Что изучаем**: Apache Kafka, Spring Kafka, Producer/Consumer, Topics, асинхронные события
+**Описание**: Перевести часть межсервисного взаимодействия на событийную модель. При создании заказа order-service публикует событие `OrderCreated` в Kafka, delivery-service подписывается и автоматически создаёт доставку. При смене статуса доставки delivery-service публикует `DeliveryStatusChanged`, order-service обновляет статус заказа.
+
+---
+
+### Задание #17 - Мониторинг (Prometheus + Grafana)
+**Статус**: Не начато
+**Что изучаем**: Micrometer Metrics, Prometheus, Grafana, Spring Boot Actuator, кастомные метрики, дашборды
+**Описание**: Настроить сбор метрик со всех сервисов через Prometheus и визуализацию в Grafana. Добавить кастомные метрики (количество заказов, среднее время обработки). Создать дашборд с ключевыми показателями системы.
+
+---
+
+### Задание #18 - Unit и интеграционные тесты (JUnit 5 + MockMvc + WireMock)
+**Статус**: Не начато
+**Что изучаем**: JUnit 5, Mockito, MockMvc, WireMock, @WebMvcTest, @DataJpaTest, тестовые слайсы Spring Boot
+**Описание**: Написать тесты для restaurant-service и order-service. Unit-тесты для сервисного слоя (Mockito), интеграционные тесты для контроллеров (MockMvc), мокирование внешних сервисов (WireMock для Feign-клиентов).
+
+---
+
+### Задание #19 - Testcontainers (интеграционные тесты с реальной инфраструктурой)
+**Статус**: Не начато
+**Что изучаем**: Testcontainers, PostgreSQL в тестах, Kafka в тестах, Redis в тестах, @DynamicPropertySource
+**Описание**: Заменить H2 на PostgreSQL через Testcontainers для интеграционных тестов. Написать end-to-end тесты с реальными Kafka, Redis и PostgreSQL в Docker-контейнерах, которые поднимаются автоматически при запуске тестов.
+
+---
+
 ## Текущий статус
-- **Фаза**: Containerization
-- **Последнее задание**: #14 - Retry и Fallback (Resilience4j)
-- **Следующий шаг**: Задание #15 - Docker Compose для всего стека
+- **Фаза**: Async & Observability
+- **Последнее задание**: #15 - Docker Compose для всего стека
+- **Следующий шаг**: Задание #16 - Apache Kafka (асинхронное взаимодействие)
