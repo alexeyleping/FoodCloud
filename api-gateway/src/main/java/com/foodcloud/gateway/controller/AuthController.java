@@ -34,5 +34,20 @@ public class AuthController {
         return Map.of("token", token);
     }
 
+    @PostMapping("/test-token")
+    public Map<String, String> generateTestToken() {
+        SecretKey key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
+
+        String token = Jwts.builder()
+                .subject("test-user")
+                .claim("role", "ADMIN")
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 315_360_000_000L)) // 10 лет
+                .signWith(key)
+                .compact();
+
+        return Map.of("token", token);
+    }
+
     record TokenRequest(String userId, String role) {}
 }

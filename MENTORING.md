@@ -155,7 +155,7 @@
 ---
 
 ### Задание #13 - Delivery Service + Distributed Tracing
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Micrometer Tracing, Zipkin, correlation ID, трассировка через несколько сервисов
 **Описание**: Создать delivery-service и настроить распределённую трассировку для отслеживания запроса через всю цепочку сервисов
 
@@ -176,6 +176,6 @@
 ---
 
 ## Текущий статус
-- **Фаза**: Resilience & Security
-- **Последнее задание**: #12 - Custom Gateway Filters (логирование, auth)
-- **Следующий шаг**: Задание #13 - Delivery Service + Distributed Tracing
+- **Фаза**: Observability & Resilience
+- **Последнее задание**: #13 - Delivery Service + Distributed Tracing
+- **Следующий шаг**: Задание #14 - Retry и Fallback (Resilience4j)
