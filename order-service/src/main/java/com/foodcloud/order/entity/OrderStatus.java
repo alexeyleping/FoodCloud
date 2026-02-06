@@ -5,5 +5,6 @@ public enum OrderStatus {
     CONFIRMED,
     DELIVERING,
     DELIVERED,
+    PENDING_VERIFICATION,
     CANCELLED
 }

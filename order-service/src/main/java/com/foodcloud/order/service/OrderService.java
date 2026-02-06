@@ -6,8 +6,9 @@ import com.foodcloud.order.exception.OrderNotFoundException;
 import com.foodcloud.order.exception.RestaurantNotAvailableException;
 import com.foodcloud.order.repository.OrderRepository;
 import com.foodcloud.order.service.client.RestaurantClient;
-import com.foodcloud.order.service.dto.RestaurantDto;
 import feign.FeignException;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class OrderService {
 
     private final RestaurantClient restaurantClient;
 
+    @Retry(name = "restaurantServiceRetry")
+    @CircuitBreaker(name = "restaurantServiceCB", fallbackMethod = "createOrderFallback")
     public Order createOrder(Order order) {
         order.setStatus(OrderStatus.NEW);
         order.setCreatedAt(LocalDateTime.now());
@@ -38,13 +41,21 @@ public class OrderService {
         }  catch (FeignException.NotFound e) {
             // restaurant-service вернул 404 — ресторан не найден
             throw new RestaurantNotAvailableException("Restaurant with id " + order.getRestaurantId() + " not found");
-        } catch (FeignException e) {
-            // любая другая ошибка Feign (500, таймаут, сервис упал и т.д.)
-            throw new RestaurantNotAvailableException("Restaurant service is unavailable");
         }
 
         return orderRepository.save(order);
     }
+
+    public Order createOrderFallback(Order order, Exception e) {
+        order.setStatus(OrderStatus.PENDING_VERIFICATION);
+        order.setCreatedAt(LocalDateTime.now());
+        // устанавливаем обратную ссылку order в каждом item,
+        // иначе JPA не заполнит order_id в таблице order_item
+        order.getOrderItems().forEach(item -> item.setOrder(order));
+        order.setTotalPrice(calculateTotalPrice(order));
+        return orderRepository.save(order);
+    }
+
 
     public Order getOrderById(Long id) {
         return orderRepository.findById(id)

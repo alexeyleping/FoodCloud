@@ -20,5 +20,10 @@ public class FallbackController {
         return Mono.just(Map.of("message", "Orders service is temporarily unavailable. Please try again later."));
     }
 
+    @GetMapping("/deliveries")
+    public Mono<Map<String, String>> deliveryFallback() {
+        return Mono.just(Map.of("message", "Delivery service is temporarily unavailable. Please try again later."));
+    }
+
 
 }

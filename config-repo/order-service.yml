@@ -7,3 +7,19 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+resilience4j:
+  retry:
+    instances:
+      restaurantServiceRetry:
+        max-attempts: 3
+        wait-duration: 500ms
+        retry-exceptions:
+          - feign.FeignException
+  circuitbreaker:
+    instances:
+      restaurantServiceCB:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2

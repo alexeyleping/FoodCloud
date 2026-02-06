@@ -162,7 +162,7 @@
 ---
 
 ### Задание #14 - Retry и Fallback (Resilience4j)
-**Статус**: Не начато
+**Статус**: Выполнено
 **Что изучаем**: Resilience4j Retry, TimeLimiter, Fallback методы, `@CircuitBreaker` аннотация
 **Описание**: Добавить Retry и Fallback логику в межсервисные вызовы для graceful degradation
 
@@ -176,6 +176,6 @@
 ---
 
 ## Текущий статус
-- **Фаза**: Observability & Resilience
-- **Последнее задание**: #13 - Delivery Service + Distributed Tracing
-- **Следующий шаг**: Задание #14 - Retry и Fallback (Resilience4j)
+- **Фаза**: Containerization
+- **Последнее задание**: #14 - Retry и Fallback (Resilience4j)
+- **Следующий шаг**: Задание #15 - Docker Compose для всего стека
